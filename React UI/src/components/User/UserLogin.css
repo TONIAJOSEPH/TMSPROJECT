@@ -1,0 +1,43 @@
+.uselog{
+    width: 50%;
+    position:relative ;
+    left: 23vw;
+    top: 8vh;
+}
+.uselog form{
+    margin-top: 2em;
+}
+.uselog input{
+
+    height: 3em;
+}
+
+.uselog button {
+
+    height: 3em;
+    width:7em;
+    background-color: rgba(255, 255, 255, 0.13);
+    font-size: 15px;
+    color: white;
+    border-style: ridge;
+    border-radius: 10%;
+}
+
+.userlog button:hover{
+    background-color: rgb(7, 7, 73);
+}
+
+
+.adminlog{
+    background-color: rgba(255, 255, 255, 0.418);
+    text-decoration: none;
+   
+   
+}
+.userlog{
+   
+    background-color: rgb(255, 255, 255);
+    text-decoration: none;
+    position: relative;
+    float: right;
+}

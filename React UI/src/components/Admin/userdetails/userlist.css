@@ -1,0 +1,20 @@
+.user{
+    transform: translateY(50px);
+    text-align: center;
+}
+
+    
+    
+
+.users{
+    transform: translateY(110px);
+    border: 2px solid;
+}
+
+.tabl{
+    color: white;
+    transform: translateY(100px);
+    border: 1px solid black;
+    width: 400px;
+    margin-left: 100px;
+}

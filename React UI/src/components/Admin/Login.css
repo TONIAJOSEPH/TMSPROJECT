@@ -1,0 +1,41 @@
+.log{
+    width: 50%;
+    position:relative ;
+    left: 23vw;
+    top: 8vh;
+}
+.log form{
+    margin-top: 2em;
+}
+.log input{
+
+    height: 3em;
+}
+
+.log button {
+
+    height: 3em;
+    width:7em;
+    background-color: rgba(255, 255, 255, 0.13);
+    font-size: 15px;
+    color: white;
+    border-style: ridge;
+    border-radius: 10%;
+}
+
+.log button:hover{
+    background-color: rgb(7, 7, 73);
+}
+
+
+.adlog{
+    background-color: rgba(255, 255, 255, 0.849);
+    text-decoration: none;
+    
+}
+.uslog{
+    background-color: rgba(255, 255, 255, 0.075);
+    text-decoration: none;
+    position: relative;
+    float: right;
+}

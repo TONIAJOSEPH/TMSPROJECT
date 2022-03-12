@@ -1,0 +1,11 @@
+.listname{
+    transform: translateY(50px);
+    text-align: center;
+}
+.allocateform{
+    transform: translateY(20px);
+  
+}
+.text2{
+    padding-left: 10px;
+}
