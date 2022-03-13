@@ -127,8 +127,8 @@ function Login(props) {
                 {/* { (isSubmit &&  isAuth) ?(<Header Values={loginValues}/>):<pre className='pretext'>Invalid Login Credentials</pre>} */}
                 
                 <div className="log">
-                    {/* <Link href='/admin/login' className="adlog" >Admin Login</Link> 
-                    <Link href='/user/login' className="uslog">User Login</Link> */}
+                    <Link href='/admin/login' className="adlog" >Admin Login</Link> 
+                    <Link href='/user/login' className="uslog">User Login</Link>
                     <form onSubmit={handleSubmit}>
                     <label for="chk" aria-hidden="true">Sign In</label>
                             <input type="text" name="username" placeholder="User name" required="" value={formValues.username} onChange={handleChange} />
