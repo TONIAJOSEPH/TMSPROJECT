@@ -17,7 +17,7 @@ let refreshTokens = [];
 //   credentials:true,            //access-control-allow-credentials:true
 //   optionSuccessStatus:200,
 // } 
-app.use(express.static(path.join(__dirname, 'REACT UI/build')));
+app.use(express.static(path.join(__dirname, 'React UI/build')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
@@ -420,7 +420,7 @@ app.get("/api/allocated",async (req,res)=>{
   })
 
   app.get("*",(req,res)=>{
-    res.sendFile(path.join(__dirname,'REACT UI','build','index.html'));
+    res.sendFile(path.join(__dirname,'React UI','build','index.html'));
 })
 
 app.listen(port, () => {
