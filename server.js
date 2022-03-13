@@ -31,7 +31,7 @@ app.use(cors());
 //   next();
 // });
 // app.use(cors(corsOptions)) // Use this after the variable declaration
-mongoose.connect('mongodb+srv://Jithin_88jeevan:071263%40Jj@cluster0.x0rbw.mongodb.net/ourProject?retryWrites=true&w=majority');
+mongoose.connect(process.env.MONGO_DB);
 
 
 
@@ -418,7 +418,7 @@ app.get("/api/allocated",async (req,res)=>{
   }    
   })
 
-  app.get("*",(req,res)=>{
+  app.get("/*",(req,res)=>{
     res.sendFile(path.join(__dirname,'client','build','index.html'));
 })
 
