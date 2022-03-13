@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -17,7 +18,7 @@ let refreshTokens = [];
 //   credentials:true,            //access-control-allow-credentials:true
 //   optionSuccessStatus:200,
 // } 
-app.use(express.static(path.join(__dirname, 'REACT UI/build')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
@@ -46,7 +47,7 @@ app.post("/api/refresh", (req, res) => {
       return res.status(403).json("Refresh token is not valid!");
     }
     //if everything is ok, create new access token, refresh token and send to user
-    jwt.verify(refreshToken, "myRefreshSecretKey", (err, user) => {
+    jwt.verify(refreshToken, process.env.REFRESH_KEY, (err, user) => {
       err && console.log(err);
       refreshTokens = refreshTokens.filter((token) => token !== refreshToken);
   
@@ -66,14 +67,14 @@ app.post("/api/refresh", (req, res) => {
   
   // Access token generating function
   const generateAccessToken = (user) => {
-    return jwt.sign({ id: user.id, username: user.username }, "mySecretKey", {
+    return jwt.sign({ id: user.id, username: user.username },process.env.SECRET_KEY, {
       expiresIn: "7s",
     });
   };
   
   // Refresh token generating function
   const generateRefreshToken = (user) => {
-    return jwt.sign({ id: user.id, username: user.username }, "myRefreshSecretKey");
+    return jwt.sign({ id: user.id, username: user.username }, process.env.REFRESH_KEY);
   };
 
 // User Registration or Enrollment API
@@ -193,7 +194,7 @@ app.post("/api/login",async (req, res) => {
       // Authheader contains Bearer and Acces token in the array
       const token = authHeader.split(" ")[1];
       
-     jwt.verify(token, "mySecretKey", (err, user) => {
+     jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
         if (err) {
           return res.status(403).json("Token is not valid!");
         }
@@ -303,12 +304,10 @@ app.post("/api/mailer",(req,res)=>{
         html: "<h3>You are approved as ICTAK trainer.Please login with username and password....</h3><br/><table border='1' width='70%' height='100px' style='border-collapse:collapse;'>\
                      <tr style='background-color: black;'>\
                         <th style='color: white;'>Username</th>\
-                        <th style='color: white;'>Password</th>\
                         <th style='color: white;'>Employ type</th>\
                     </tr>\
                  <tr>\
                  <td style='text-align: center'>"+data2+"</td>\
-                 <td style='text-align: center'>"+data3+"</td>\
                  <td style='text-align: center'>"+data4+"</td>\
                    </tr>\
                   </table><br/>"      
@@ -420,7 +419,7 @@ app.get("/api/allocated",async (req,res)=>{
   })
 
   app.get("*",(req,res)=>{
-    res.sendFile(path.join(__dirname,'REACT UI','build','index.html'));
+    res.sendFile(path.join(__dirname,'client','build','index.html'));
 })
 
 app.listen(port, () => {
