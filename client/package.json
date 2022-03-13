@@ -2,7 +2,7 @@
   "name": "tms",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:6233/",
+  "proxy": "http://localhost:6233",
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
