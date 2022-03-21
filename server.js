@@ -4,10 +4,10 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const Register = require('./model/registerModel');
-const Allocation = require('./model/allocationModel');
+// const Allocation = require('./model/allocationModel');
 const bcrypt = require('bcrypt');
 const path = require('path');
-const nodemailer=require("nodemailer");
+// const nodemailer=require("nodemailer");
 const multer=require("multer");
 
 const app = express();
@@ -18,10 +18,10 @@ let refreshTokens = [];
 
 
 
-const Auth=require("./authentication/jwtauth");
+
 const AdminRouter=require("./routes/adminRoutes");
 const UserRouter=require("./routes/userRoutes");
-const LoginRouter=require("./routes/loginRoutes");
+
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(express.urlencoded({ extended: true }));
