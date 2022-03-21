@@ -61,22 +61,22 @@ function User(props) {
         }
       );
       
-      async function singleUser(){
+    //   async function singleUser(){
    
-        const response = await axiosJWT.get(`http://localhost:6233/api/user/${user.username}`,{
+    //     const response = await axiosJWT.get(`http://localhost:6233/user/${user.username}`,{
           
-        headers: { authorization: "Bearer " + accessToken}
-        });
-        // const result= await response.json();
-        console.log(response.data);  
+    //     headers: { authorization: "Bearer " + accessToken}
+    //     });
+    //     // const result= await response.json();
+    //     console.log(response.data);  
         
          
        
-    }
+    // }
 
       useEffect(()=>{
         singleUser()
-      },[refreshToken]); 
+      },[]); 
 
  //checking for the same name   
 async function singleUser(){
@@ -86,16 +86,20 @@ async function singleUser(){
     headers: { authorization: "Bearer " + accessToken}
     });
     // const result= await response.json();
-    console.log(response.data);  
+    // console.log(response.data);  
     setInfo(response.data.schedule);
     setUserInfo(response.data.userInfo[0]) 
    
 }
 const [info,setInfo]= useState([]);
+// info.map((i)=>{
+//   // console.log(i.batch); 
+// })
+// console.log(info.batch);  
 const [userInfo,setUserInfo]=useState([]);
 
     return (
-        <div>
+        <div className="profilesection">
             <div className="ScriptTop">
     <div className="rt-container">
         <div className="col-rt-4" id="float-right">
@@ -113,7 +117,8 @@ const [userInfo,setUserInfo]=useState([]);
     <div className="rt-container">
     	<div className="col-rt-12">
         	<div className="rt-heading">
-            	<h1>Profile</h1>
+            	<h1 style={{textAlign: "center"}}>Profile</h1>
+              <hr></hr>
                 
             </div>
         </div>
@@ -126,19 +131,22 @@ const [userInfo,setUserInfo]=useState([]);
               <div className="Scriptcontent">
               
 {/* <!-- Student Profile --> */}
-<div className="student-profile py-4">
+<div className="student-profile py-4" style={{marginLeft: 100}}>
   <div className="container">
     <div className="row">
       <div className="col-lg-4">
         <div className="card shadow-sm">
           <div className="card-header bg-transparent text-center">
-            <img className="profile_img" src="https://source.unsplash.com/600x300/?student" alt="student dp"/>
+            <img className="profile_img" src={`/uploads/${userInfo.image}`} alt="student dp"/>
             <h3>{`${userInfo.fname} ${userInfo.sname}`}</h3>
           </div>
-          <div className="card-body">
-            <p className="mb-0"><strong className="pr-1">Register ID : {`${userInfo.registerid}`}</strong>{user.fname}</p>
-            <p className="mb-0"><strong className="pr-1">Employee Status: {`${userInfo.emp}`}</strong></p>
-            <p className="mb-0"><strong className="pr-1">Email:{`${userInfo.email}`}</strong></p>
+          <div className="card-body" style={{marginLeft: 200,marginTop: -180}}>
+            <p className="mb-0"><strong className="pr-1">Register ID  : {`${userInfo.registerid}`}</strong>{user.fname}</p><br/>
+            <p className="mb-0"><strong className="pr-1">Employee Status  : {`${userInfo.emp}`}</strong></p><br/>
+            <p className="mb-0"><strong className="pr-1">Email  : {`${userInfo.email}`}</strong></p><br/>
+            <p className="mb-0"><strong className="pr-1">Qualification  : {`${userInfo.quali}`}</strong>{user.fname}</p><br/>
+            <p className="mb-0"><strong className="pr-1">Designation  : {`${userInfo.job}`}</strong></p><br/>
+           
           </div>
         </div>
       </div>
@@ -149,36 +157,6 @@ const [userInfo,setUserInfo]=useState([]);
 </div>
 </div>
 </section>
-<Table className="shtab" style={{width: 500}}>
-              <TableHead>
-                  <TableRow style={{backgroundColor:'black'}}>
-                       <TableCell style={{color:'white'}}>Batch</TableCell>
-                       <TableCell style={{color:'white'}}>Course</TableCell>
-                       <TableCell style={{color:'white'}}>Start Date</TableCell>
-                       <TableCell style={{color:'white'}}>End Date</TableCell>
-                       <TableCell style={{color:'white'}}>Day</TableCell>
-                       <TableCell style={{color:'white'}}>Start Time</TableCell>
-                       <TableCell style={{color:'white'}}>End Time</TableCell>
-                       <TableCell style={{color:'white'}}>Venue/Link</TableCell>
-                  </TableRow>
-                  </TableHead>
-                  <TableBody>
-                  {info.map((i,key)=>(
-              <TableRow key={key} style={{backgroundColor:'white'}}>
-              <TableCell>{i.batch}</TableCell>
-              <TableCell>{i.batch}</TableCell>
-              <TableCell>{i.startdate.slice(0,10)}</TableCell>
-              <TableCell>{i.enddate.slice(0,10)}</TableCell>
-              <TableCell>{i.day}</TableCell>
-              <TableCell>{i.starttime}</TableCell>
-              <TableCell>{i.endtime}</TableCell>
-              <TableCell>{i.meeting}</TableCell>
-              
-              </TableRow>
-                  ))}
-              </TableBody>
-            </Table>
-
 
         </div>
     );

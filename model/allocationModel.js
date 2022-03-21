@@ -10,7 +10,7 @@ var allocationSchema = new Schema({
     fname:String,
     sname:String,
     quali:String,
-    course:String,
+    courseid:String,
     comp:String,
     batch:String,
     emp:String,
@@ -20,11 +20,9 @@ var allocationSchema = new Schema({
     enddate:Date,
     meeting:String,
     schedule:String,
-    day:String
+    day:String,
+    image:String
     
-    
-    
-   
 });
 
 var Allocation = mongoose.model('allocations', allocationSchema);

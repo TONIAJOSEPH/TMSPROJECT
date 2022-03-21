@@ -1,6 +1,9 @@
 .approve{
     transform: translateY(30px);
     text-align: center;
+    font-style: inherit;
+    font-size: 20px;
+   
 }
 
 
@@ -11,7 +14,7 @@
 .approvetable{
     transform: translateY(50px);
     border: 1px solid;
-    margin-left: 300px;
+    margin-left: 250px;
     margin-top: -10px;
 }
 .search{

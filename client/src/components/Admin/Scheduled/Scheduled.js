@@ -80,9 +80,9 @@ async function searching(){
 
 //getting all scheduledtrainers
 async function scheduledtrainerslist(){
-    const response = await axiosJWT.get(`/api/allocated`,{headers: { authorization: "Bearer " + accessToken }})
+    const response = await axiosJWT.get(`/admin/api/allocated`,{headers: { authorization: "Bearer " + accessToken }})
     // const result= await response.json();
-    
+    console.log(response);
     setScheduledtrainers(response.data);
 }
 
@@ -102,9 +102,9 @@ async function handleSignOUt(){
     return (
         <div className="shfull">
         
-            <h1 style={{marginTop: 10,textAlign: "center"}}>scheduled trainers</h1>
+            <p style={{marginTop: 10,textAlign: "center",fontSize: 20,fontStyle: "inherit"}}>scheduled trainers</p>
             <FormControl variant="standard">
-            <Input className="searchsh" value={search} style={{width: 300,backgroundColor: "white",paddingLeft: 10,borderRadius: 20}} id="input-with-icon-adornment"
+            <Input className="searchsh" value={search} style={{width: 300,paddingLeft: 10}} id="input-with-icon-adornment"
             endAdornment={<InputAdornment><SearchIcon onClick={searching} style={{cursor:'pointer'}}/></InputAdornment>}
             onChange={(event)=>setSearch(event.target.value)}/>
             </FormControl>
@@ -115,7 +115,8 @@ async function handleSignOUt(){
                        <TableCell style={{color:'white'}}>Name</TableCell>
                        <TableCell style={{color:'white'}}>Startdate</TableCell>
                        <TableCell style={{color:'white'}}>Enddate</TableCell>
-                       <TableCell style={{color:'white'}}>Time</TableCell>
+                       <TableCell style={{color:'white'}}>starttime</TableCell>
+                       <TableCell style={{color:'white'}}>endtime</TableCell>
                        <TableCell style={{color:'white'}}>Day</TableCell>
                        <TableCell style={{color:'white'}}></TableCell>
                   </TableRow>
@@ -124,9 +125,10 @@ async function handleSignOUt(){
                   {scheduledtrainers.map((i,key)=>(
               <TableRow key={key} style={{backgroundColor:'white'}}>
               <TableCell>{i.fname}</TableCell>
-              <TableCell>{i.startdate}</TableCell>
-              <TableCell>{i.enddate}</TableCell>
+              <TableCell>{i.startdate.slice(0,10)}</TableCell>
+              <TableCell>{i.enddate.slice(0,10)}</TableCell>
               <TableCell>{i.starttime}</TableCell>
+              <TableCell>{i.endtime}</TableCell>
               <TableCell>{i.day}</TableCell>
               <TableCell><BasicModal item={i}></BasicModal></TableCell>
               </TableRow>

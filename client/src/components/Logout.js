@@ -72,9 +72,11 @@ function Logout(props) {
    
    });
      // const result= await response.json(); 
-     
+    //  Cookies.remove("access");
+    //  Cookies.remove("refresh");
+
      console.log(response.status);
-     dispatch({type:"LOGOUT", payload:"isLogout"});  
+      dispatch({type:"LOGOUT", payload:"isLogout"});  
      navigate("/",{replace:true})
  }
 

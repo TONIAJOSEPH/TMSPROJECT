@@ -14,6 +14,7 @@ import User from './components/User/User.js'
 import Logout from './components/Logout'
 import Cookies from "js-cookie";
 import { initialState,reducer } from "./reducer/UserReducer";
+import Userschedule from "./components/User/profile/Userschedule";
 
 export const UserContext = createContext();
 
@@ -47,6 +48,7 @@ function App() {
 						<Route path='/register' element={<Signup/>} />
 						<Route path='/admin/login' element={<Login />} />
 						<Route path='/user/login' element={<UserLogin setUserData={setUserData}/>} />
+						<Route path='/user/schedule' element={<Userschedule  userData={userData}/>} />
 						<Route path='/logout' element={<Logout/>} />
   					</Routes>
         				

@@ -36,7 +36,7 @@
   
   .module{
     position:relative;
-    top:10%;    
+    /* top:5%;     */
     height:65%;
     width:450px;
     margin-left:auto;

@@ -51,7 +51,7 @@ function UserLogin(props) {
         event.preventDefault();
         
       await  axios.post('http://localhost:6233/api/login',formValues).then((response)=>{
-    
+              console.log("im in userlogin");
             setloginValues(response.data);
             
             console.log("data",response.data);
@@ -120,7 +120,7 @@ function UserLogin(props) {
                             
                             <input type="password" name="password" placeholder="Password" required="" value={formValues.password} onChange={handleChange} />
                             { isSubmit &&  loginValues.status==="Authentication failed" ?(<h3>Invalide credentials</h3>):(<h3></h3>)}
-                            <button>Sign In</button>
+                            <button type="submit">Sign In</button>
                     </form>
                 </div>
                  

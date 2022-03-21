@@ -9,7 +9,7 @@
     height: 150px;
     object-fit: cover;
     margin: 10px auto;
-    border: 10px solid #ccc;
+    /* border: 10px solid #ccc; */
     border-radius: 50%;
 }
 .card-head{
@@ -19,6 +19,7 @@
     height: 30em;
     left: 18em;
     margin-top: -15em;
+   
 }
 .student-profile .card h3 {
     font-size: 20px;
@@ -54,4 +55,18 @@
 }
 .shfull{
     transform: translateY(30px);
+}
+.profilesection{
+    background-color: white;
+    color: black;
+   margin-left: 200px;
+   margin-right: 200px;
+   margin-top: 50px;
+   padding-bottom: 50px;
+   /* padding-left: -100px; */
+}
+.card-body{
+    /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+    color: black;
+   
 }

@@ -3,6 +3,7 @@ import Select from 'react-select';
 import validation from './validation';
 import axios from 'axios';
 import './Signup.css';
+import { Button, MenuItem } from '@mui/material';
 
 
 function Signup(props) {
@@ -17,6 +18,8 @@ function Signup(props) {
     
     var [course,setCourse]=useState(null);
     
+    var [courseid,setCourseid]=useState("");
+
     var approval=false;
     
 
@@ -27,24 +30,31 @@ function Signup(props) {
     var [display,setDisplay]=useState(null);
     // Flag for Form Submission Status
     const [isSubmit, setIsSubmit] = useState(false); 
+    const [image,setImage]=useState({})
 
     console.log(formValues);
     console.log(course);
     
     // Manage Field Change
     const  handleChange = (event) => {
-        // console.log(event.target);
-        const { name, value } = event.target; //destructuring
-        setFormValues({ ...formValues, [name]: value });
-        // console.log(formValues);
-        
+        const { name, value } = event.target; 
+        setFormValues({ ...formValues, [name]: value }); 
     }
+    const filechange=(event)=>{
+      setImage(event.target.files[0]);
+      }
 
-    // const courseHandler=(event)=>{
-    //   setCourse(event.label);
 
-    // }
-    // Array.isArray(event)?event.map(x=>x.label):[]
+      const changecourse=(e)=>{
+        var labels="";
+        e.map((i)=>{
+         labels += i.label+" ";
+        })
+        setCourse(labels);
+        console.log(course);
+        
+      }
+
 
     // Manage Form Refresh
     const handleSubmit = (event) => {
@@ -63,16 +73,28 @@ function Signup(props) {
 
     function register(){
 
+      const formData=new FormData();
+    formData.append("myfile",image);
+    formData.append("fname",formValues.fname);
+    formData.append("sname",formValues.sname);
+    formData.append("username",formValues.username);
+    formData.append("email",formValues.email);
+    formData.append("password",formValues.password);
+    formData.append("quali",formValues.quali);
+    formData.append("skill",formValues.skill);
+    formData.append("org",formValues.org);
+    formData.append("job",formValues.job);
+    formData.append("course",course);
+    formData.append("approval",approval);
+    // {formValues,course,approval}
         
-            axios.post('/api/register',{formValues,course,approval})
+            axios.post('/api/register',formData)
             .then((response)=>
             {
               console.log(response.data);
               
                 setValues(response.data);
               
-                
-        
             })
 
             setFormValues({ username: "",fname: "",sname: "", email: "",
@@ -86,7 +108,7 @@ function Signup(props) {
               setDisplay("Registration Successfull");
                 setFormValues({ username: "",fname: "",sname: "", email: "",
                 password: "",job:"",org:'' ,skill:'' ,quali:"",});
-
+              
               
               setIsSubmit(false);
 
@@ -103,7 +125,7 @@ function Signup(props) {
             <div className="body-content">
   <div className="module">
   <h1>Trainee Enroll Form</h1>
-   <h3>Enter The Required Data</h3>
+   {/* <h3>Enter The Required Data</h3> */}
    <h3>{display}</h3>
     <form className="form"  enctype="multipart/form-data" onSubmit={handleSubmit} >
       <div className="alert alert-error"></div>
@@ -115,11 +137,12 @@ function Signup(props) {
       <input type="text" id="organization" onChange={handleChange} name="org" value={formValues.org} className="form" placeholder="Organization"  required/>
       <input type="text" id="designation" onChange={handleChange} name="job" value={formValues.job} className="form" placeholder="Designation"  required/>
       <label id="skill-label">Courses Handling</label>
-      <Select className='drop' options={allCourses} isMulti onChange={setCourse}  />
-      <label id="skill-label">Skills</label>
+      <Select className='drop' options={allCourses} isMulti onChange={changecourse}/>
+      
+     <label id="skill-label">Skills</label>
       <input type="text" id="skill" onChange={handleChange} name="skill" value={formValues.skill} className="form" placeholder="skill 1,skill 2,..."  required/>
     <input type="password" id="password" onChange={handleChange} name="password" value={formValues.password} className="form" required placeholder="Insert your password"/>
-      {/* <div className="avatar"><label>Select your avatar: </label><input type="file" name="avatar" accept="image/*" required /></div> */}
+      <div className="avatar"><label>choose your image: </label><input type="file" filename="myfile"  required onChange={filechange}/></div>
       <input type="submit" value="Register" name="register" class="btn btn-block btn-primary" />
     </form>
   </div>

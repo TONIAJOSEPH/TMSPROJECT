@@ -11,7 +11,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: 600,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -21,7 +21,7 @@ const style = {
 export default function BasicModal(props) {
 
     const {item} = props;
-    console.log(item.starttime);
+    console.log(item);
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -37,15 +37,16 @@ export default function BasicModal(props) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-         <img className="cardimg" style={{width: 100,height: 100}} src={newone}/>
-          <div className="cardcontent">
-          <Typography className="cardname" id="modal-modal-title" variant="h5" component="h2" style={{color: "black",marginTop: -20,marginLeft: 10}}>{item.fname}</Typography>
+         <img className="cardimg" style={{width: 100,height: 100}} src={`/uploads/${item.image}`}/>
+         <Typography className="cardname" id="modal-modal-title" variant="h5" component="h2" style={{color: "black",marginLeft: 15,marginTop: -10}}>{item.fname}</Typography>
+          <div className="cardcontent" style={{marginLeft: 140,marginTop: -150}}>
+         
           <Typography id="modal-modal-title" style={{color: "black",backgroundColor: "lightgrey",padding: 5,marginBottom: 5}}>Batch: {item.batch}</Typography>
           <Typography id="modal-modal-title" style={{color: "black",backgroundColor: "lightgrey",padding: 5,marginBottom: 5}}>Day: {item.day}</Typography>
           <Typography id="modal-modal-title" style={{color: "black",backgroundColor: "lightgrey",padding: 5,marginBottom: 5}}>StartTime: {item.starttime}</Typography>
           <Typography id="modal-modal-title" style={{color: "black",backgroundColor: "lightgrey",padding: 5,marginBottom: 5}}>EndTime: {item.endtime}</Typography>
-          <Typography id="modal-modal-title" style={{color: "black",backgroundColor: "lightgrey",padding: 5,marginBottom: 5}}>Startdate: {item.startdate}</Typography>
-          <Typography id="modal-modal-title" style={{color: "black",backgroundColor: "lightgrey",padding: 5,marginBottom: 5}}>Enddate: {item.enddate}</Typography>
+          <Typography id="modal-modal-title" style={{color: "black",backgroundColor: "lightgrey",padding: 5,marginBottom: 5}}>Startdate: {item.startdate.slice(0,10)}</Typography>
+          <Typography id="modal-modal-title" style={{color: "black",backgroundColor: "lightgrey",padding: 5,marginBottom: 5}}>Enddate: {item.enddate.slice(0,10)}</Typography>
           <Typography id="modal-modal-title" style={{color: "black",backgroundColor: "lightgrey",padding: 5,marginBottom: 5}}>Meetinglink: {item.meeting}</Typography>
           <Typography id="modal-modal-title" style={{color: "black",backgroundColor: "lightgrey",padding: 5,marginBottom: 5}}>Schedulelink: {item.schedule}</Typography>
           </div>

@@ -6,8 +6,6 @@ var registerSchema = new Schema({
     fname: String,
     sname: String,
     email: String,
-    mobile:String,
-    address: String,
     password: String,
     username: String,
     job:String,

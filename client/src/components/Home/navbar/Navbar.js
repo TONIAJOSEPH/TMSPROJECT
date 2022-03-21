@@ -87,10 +87,14 @@ const Navbar = () => {
 						<ul className={click ? "nav-menu active" : "nav-menu"}>
 							<li className='nav-item'>
 								<Link to='/user/:id' className='nav-links' onClick={closeMobileMenu}>
-									Home
+									Profile
 								</Link>
 							</li>
-							
+							<li className='nav-item'>
+								<Link to='/user/schedule' className='nav-links' onClick={closeMobileMenu}>
+									Schedule
+								</Link>
+							</li>
 							<li className='nav-item'>
 								<Link to='/logout' className='nav-links' onClick={closeMobileMenu}>
 									Logout
@@ -142,7 +146,7 @@ const Navbar = () => {
 		)
 
 	}
-	else  {
+	else{
 
 		return (
 			<>

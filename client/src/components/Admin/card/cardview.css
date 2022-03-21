@@ -1,8 +1,19 @@
 .cardimg{
-    margin-left: 150px;
-    border: 1px solid black;
-    padding: 10px;
+    /* margin-left: 10px; */
+    /* border: 1px solid black; */
+    /* padding: 10px; */
 }
 .cardname{
     /* margin-left: 150px; */
+}
+.cardmaincontent{
+/*    
+    margin-left: 120px;
+    margin-top: -140px; */
+}
+.cardcont{
+    border: 2px solid ;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: whitesmoke;
 }

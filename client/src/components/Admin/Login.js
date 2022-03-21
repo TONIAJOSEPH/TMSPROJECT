@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import '../Home/navbar/Navbar';
-import {Link, AppBar, Toolbar, Typography } from '@mui/material';
+import {Link, AppBar, Toolbar, Typography, Button } from '@mui/material';
 import Cookies from "js-cookie";
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
@@ -51,8 +51,8 @@ function Login(props) {
      const handleSubmit =  async (event) => {
         event.preventDefault();
         
-      await  axios.post('/api/login',formValues).then((response)=>{
-    
+      await  axios.post('http://localhost:6233/api/login',formValues).then((response)=>{
+            console.log("im login");
             setloginValues(response.data);
             console.log("data",response.data);
             setIsSubmit(true)
@@ -87,7 +87,7 @@ function Login(props) {
     //    console.log(formValues.username);
     //    console.log(username);
     console.log("full",loginValues.id);
-       if( loginValues.id=="621c90a152ec1005d7ca5645") {
+       if( loginValues.id=="623849e8a7ec16a6b5c6baba") {
 
         dispatch({type:"ADMIN", payload:"isAdmin"});
         // props.setLogInfo(Cookies.get("log")) ;
@@ -127,10 +127,11 @@ function Login(props) {
                 {/* { (isSubmit &&  isAuth) ?(<Header Values={loginValues}/>):<pre className='pretext'>Invalid Login Credentials</pre>} */}
                 
                 <div className="log">
-                    <Link href='/admin/login' className="adlog" >Admin Login</Link> 
-                    <Link href='/user/login' className="uslog">User Login</Link>
+                    <Link href='/admin/login' className="adlog">Admin Login</Link> 
+                   <Link href='/user/login'  className="uslog">User Login</Link>
                     <form onSubmit={handleSubmit}>
                     <label for="chk" aria-hidden="true">Sign In</label>
+                          
                             <input type="text" name="username" placeholder="User name" required="" value={formValues.username} onChange={handleChange} />
                             
                             

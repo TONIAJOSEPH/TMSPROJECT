@@ -14,7 +14,7 @@ const Allocation = (props) => {
     // const {id} = props;
     const {item} = props;
 
-    // console.log(item);
+     console.log(item);
 
     const navigate=useNavigate();
    
@@ -79,7 +79,7 @@ async function allocated(){
    if (batch && courseid && day && eTime && time && startdate && enddate && meeting && schedule ) {
     const newname=item.username;
     console.log(newname);
-    const response = await axiosJWT.post(`/api/allocation/${newname}`,
+    const response = await axiosJWT.post(`/admin/api/allocation/${newname}`,
     {body:{item,batch,courseid,day,time,eTime,startdate,enddate,meeting,schedule},
     headers: { authorization: "Bearer " + Cookies.get("access") }});
     // const result= await response.json();
@@ -118,10 +118,10 @@ async function allocated(){
                 <span className="text2">
                 <Select  value={courseid} displayEmpty onChange={(e)=>setCourseid(e.target.value)} size="small" style = {{width: 180}} variant="filled">
                 <MenuItem value="" disabled>course id</MenuItem>
-                <MenuItem value="fsd">FSD</MenuItem>
-                <MenuItem value="rpa">RPA</MenuItem>
-                <MenuItem value="cyber">DSA</MenuItem>
-                <MenuItem value="test">CSA</MenuItem>  
+                <MenuItem value="FSD">FSD</MenuItem>
+                <MenuItem value="RPA">RPA</MenuItem>
+                <MenuItem value="DSA">DSA</MenuItem>
+                <MenuItem value="CSA">CSA</MenuItem>  
                 </Select>
                 </span><br/><br/>
                 <TextField className="text2" type="time" size="small" label="Start time" style = {{width: 150}} name="starttime" focused value={time} onChange={(e)=>setTime(e.target.value)} variant="filled"/>

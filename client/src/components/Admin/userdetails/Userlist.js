@@ -65,7 +65,7 @@ console.log("access",accessToken);
    console.log(JSON.stringify(employ));
 //getting registered details for approving in front end
 async function fetchuserlist(){
-         const response=await axiosJWT.get("/api/userdetails", {headers: { authorization: "Bearer " + accessToken }});
+         const response=await axiosJWT.get("/admin/api/userdetails", {headers: { authorization: "Bearer " + accessToken }});
         //  const body=await response.JSON();
          console.log("map",response.data);
          setUser(response.data);   
@@ -83,7 +83,7 @@ useEffect(()=>{
     console.log("deleted",accessToken);
     setIsSubmit(true)
     console.log("new token",token);
-    let res= await axiosJWT.post(`/api/user/delete/${id}`,
+    let res= await axiosJWT.post(`/admin/api/user/delete/${id}`,
     {headers:{authorization: "Bearer "+ accessToken}})
     if(isSubmit){
     console.log("deleted",res);
@@ -109,7 +109,7 @@ useEffect(()=>{
 async function fetchstatus(event){
     const id=event.target.id;
     if(employ){
-       const updated= await axiosJWT.post(`/api/updatestatus/${id}`,{
+       const updated= await axiosJWT.post(`/admin/api/updatestatus/${id}`,{
            
            body:employ,
            
@@ -131,7 +131,7 @@ async function fetchstatus(event){
  async function fetchapprove(event){
      try { 
         const id=event.target.id;
-        const result = await axiosJWT.get(`/api/select/${id}`, {headers: { authorization: "Bearer " + accessToken }})
+        const result = await axiosJWT.get(`/admin/api/select/${id}`, {headers: { authorization: "Bearer " + accessToken }})
         // const values =  await result.json();
         console.log(result);
         setapprovedTrainer(result);
@@ -154,7 +154,7 @@ async function fetchstatus(event){
   const email=item.email;
   const uname=item.username;
   const pass=item.password;
-  await axiosJWT.post(`/api/mailer`,{
+  await axiosJWT.post(`/admin/api/mailer`,{
      
        body:{uname,email,pass,employ},
       headers: {
@@ -182,7 +182,7 @@ navigate("/",{replace:true});
     return (
         <div className="usedetail">
        
-            <h3 className="user">requests for approval</h3>
+            <p className="user">Pending Requests</p>
         <Table className="tabl"style={{backgroundColor:'black',width: 500}}>
             <TableHead>
                 <TableRow>
@@ -195,6 +195,7 @@ navigate("/",{replace:true});
                     <TableCell style={{color:'white'}}></TableCell>
                     <TableCell style={{color:'white'}}></TableCell>
                     <TableCell style={{color:'white'}}></TableCell>
+                    {/* <TableCell style={{color:'white'}}></TableCell> */}
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -216,6 +217,7 @@ navigate("/",{replace:true});
                     <TableCell style={{color:'white'}}><Button variant="contained" color="success" id={i._id} onClick={fetchstatus}>approve</Button></TableCell>
                     <TableCell style={{color:'white'}}><Button variant="contained" color="error" id={i._id} onClick={fetchdelete}>Reject</Button></TableCell>
                     <TableCell style={{color:'white'}}><BasicModal item={i}></BasicModal></TableCell>
+                    {/* <TableCell style={{color:'white'}}><Button variant="contained" color="error" id={i._id} onClick={fetchuser}>username</Button></TableCell> */}
                 </TableRow>
 ))}
             </TableBody>

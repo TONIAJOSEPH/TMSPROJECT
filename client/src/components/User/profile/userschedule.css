@@ -1,0 +1,6 @@
+.ush{
+    transform: translateY(50px);
+    text-align: center;
+    font-size: 20px;
+    font-style: inherit;
+}

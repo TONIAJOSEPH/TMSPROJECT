@@ -67,11 +67,11 @@ console.log("access",accessToken);
 
 async function searching(){
     active.map((i)=>{
-      const fullname=i.fname+i.sname;
+      const fullname=i.fname+" "+i.sname;
       console.log(fullname);
 if(fullname===search){
     console.log("find");
-    setActive(active.filter(el=>el.fname+el.sname === search));  
+    setActive(active.filter(el=>el.fname+" "+el.sname === search));  
 }
 else if(i.quali===search) {
     console.log("find");
@@ -91,7 +91,7 @@ useEffect(()=>{
 
 //fetching approvedlist
  async function fetchapproved(){
-      const response=  await axiosJWT.get("/api/approvedlist",{headers: { authorization: "Bearer " + accessToken }})
+      const response=  await axiosJWT.get("/admin/api/approvedlist",{headers: { authorization: "Bearer " + accessToken }})
         //  const body= await response.json();
         console.log(response.data)
          setActive(response.data);     
@@ -110,7 +110,7 @@ useEffect(()=>{
     return (
     <div className="approved">
      
-        <h2 className="approve">Approved list </h2>
+        <p className="approve">Approved Trainers </p>
             <FormControl variant="standard">
             <Input className="search" value={search} style={{width: 300,paddingLeft: 10,borderRadius: 20}} id="input-with-icon-adornment" 
             endAdornment={<InputAdornment position="start"><SearchIcon onClick={searching} style={{cursor:'pointer'}}/></InputAdornment>}
